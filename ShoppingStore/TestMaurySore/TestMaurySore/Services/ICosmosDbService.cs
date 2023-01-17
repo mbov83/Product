@@ -4,10 +4,10 @@ namespace TestMaurySore.Services
 {
     public interface ICosmosDbService
     {
-        Task<IEnumerable<Item>> GetMultipleAsync(string query);
-        Task<Item> GetAsync(string id);
-        Task AddAsync(Item item);
-        Task UpdateAsync(string id, Item item);
+        Task<IEnumerable<Product>> GetMultipleAsync(string query);
+        Task<Product> GetAsync(string id);
+        Task AddAsync(Product item);
+        Task UpdateAsync(string id, Product item);
         Task DeleteAsync(string id);
     }
 }

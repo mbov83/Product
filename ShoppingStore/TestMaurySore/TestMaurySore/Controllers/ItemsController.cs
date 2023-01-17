@@ -7,7 +7,7 @@ namespace TestMaurySore.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class ItemsController : ControllerBase
-    {
+    {/*
         private readonly ICosmosDbService _cosmosDbService;
         public ItemsController(ICosmosDbService cosmosDbService)
         {
@@ -46,6 +46,6 @@ namespace TestMaurySore.Controllers
         {
             await _cosmosDbService.DeleteAsync(id);
             return NoContent();
-        }
+        }*/
     }
 }

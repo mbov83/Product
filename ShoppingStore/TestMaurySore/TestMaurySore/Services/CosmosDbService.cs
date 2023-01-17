@@ -12,19 +12,19 @@ public class CosmosDbService : ICosmosDbService
     {
         _container = cosmosDbClient.GetContainer(databaseName, containerName);
     }
-    public async Task AddAsync(Item item)
+    public async Task AddAsync(Product item)
     {
         await _container.CreateItemAsync(item, new PartitionKey(item.Id));
     }
     public async Task DeleteAsync(string id)
     {
-        await _container.DeleteItemAsync<Item>(id, new PartitionKey(id));
+        await _container.DeleteItemAsync<Product>(id, new PartitionKey(id));
     }
-    public async Task<Item> GetAsync(string id)
+    public async Task<Product> GetAsync(string id)
     {
         try
         {
-            var response = await _container.ReadItemAsync<Item>(id, new PartitionKey(id));
+            var response = await _container.ReadItemAsync<Product>(id, new PartitionKey(id));
             return response.Resource;
         }
         catch (CosmosException) //For handling item not found and other exceptions
@@ -32,10 +32,10 @@ public class CosmosDbService : ICosmosDbService
             return null;
         }
     }
-    public async Task<IEnumerable<Item>> GetMultipleAsync(string queryString)
+    public async Task<IEnumerable<Product>> GetMultipleAsync(string queryString)
     {
-        var query = _container.GetItemQueryIterator<Item>(new QueryDefinition(queryString));
-        var results = new List<Item>();
+        var query = _container.GetItemQueryIterator<Product>(new QueryDefinition(queryString));
+        var results = new List<Product>();
         while (query.HasMoreResults)
         {
             var response = await query.ReadNextAsync();
@@ -43,7 +43,7 @@ public class CosmosDbService : ICosmosDbService
         }
         return results;
     }
-    public async Task UpdateAsync(string id, Item item)
+    public async Task UpdateAsync(string id, Product item)
     {
         await _container.UpsertItemAsync(item, new PartitionKey(id));
     }

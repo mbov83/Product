@@ -17,7 +17,7 @@ builder.Services.AddTransient<IAzureStorage, AzureStorage>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(builder.Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
-static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
+static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection )
 {
     var databaseName = configurationSection["DatabaseName"];
     var containerName = configurationSection["ContainerName"];
