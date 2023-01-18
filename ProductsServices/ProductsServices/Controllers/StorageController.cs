@@ -4,7 +4,7 @@ using ProductsServices.Services;
 
 namespace ProductsServices.Controllers
 {
-    [Route("api/Product")]
+    [Route("api/Product[controller]")]
     [ApiController]
     public class StorageController : ControllerBase
     {
